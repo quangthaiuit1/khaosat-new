@@ -1,0 +1,248 @@
+<p:autoComplete id="themePojo"
+	value="#{settingUserBean.autocompleteEmployee}"
+	completeMethod="#{settingUserBean.completeTest}" var="theme"
+	itemLabel="#{theme.name}" itemValue="#{theme}"
+	converter="#{themeConverter}" minQueryLength="4" forceSelection="true"
+	scrollHeight="400" size="56" style="font-size:80px">
+	<p:column style="width:20%" headerText="Mã">
+		<h:outputText value="#{theme.code}" />
+	</p:column>
+	<p:column style="width:50%" headerText="Tên">
+		<h:outputText value="#{theme.name}" />
+	</p:column>
+
+	<p:column style="width:30%" headerText="Phòng ban">
+		<h:outputText value="#{theme.department.name}" />
+	</p:column>
+	<p:ajax event="itemSelect"
+		listener="#{settingUserBean.autocompleteSelected()}"
+		update="loadResult:dtEmployees themePojo" />
+</p:autoComplete>
+
+<h:panelGrid columns="1" style="width:100%">
+	<p:panelGrid columns="3" columnClasses="w30,w60,w10">
+		<p:outputLabel value="Nhân viên" />
+		<p:autoComplete style="width:100%;"
+			value="#{settingUserBean.employeeDTOSelected}"
+			converter="abstractConverter" minQueryLength="3"
+			completeMethod="#{settingUserBean.completeEmployee}" var="p"
+			itemLabel="#{p.name}" itemValue="#{p}" forceSelection="true">
+			<p:ajax event="itemSelect" listener="#{settingUserBean.ajaxEmp()}"
+				update="@form" />
+			<f:attribute name="filters" value="name,code" />
+			<p:column style="width:50px">
+							   	#{p.code}
+							</p:column>
+			<p:column style="width:200px">
+							   	#{p.name}
+							</p:column>
+			<p:column style="width:200px">
+							   	#{p.nameDepart}
+							</p:column>
+		</p:autoComplete>
+		<p:commandButton value="..." onclick="PF('wgphongban').show()" />
+	</p:panelGrid>
+</h:panelGrid>
+
+
+<p:dataTable value="#{settingUserBean.departmentList}" var="item"
+	scrollable="true" scrollHeight="500" styleClass="tableformat"
+	paginatorPosition="bottom" rowsPerPageTemplate="60,80,100"
+	paginator="true" rows="80" rowKey="#{item.code}"
+	sortBy="#{item.department.id}" expandableRowGroups="true"
+	rowIndexVar="rowIndex" resizableColumns="true">
+	<p:headerRow>
+		<p:column style="text-align:center">
+			<h:outputText value="" />
+		</p:column>
+		<p:column style="font-size: 1.3em;text-align:center" width="50">
+			<h:outputText value="#{item.department.code}" />
+		</p:column>
+		<p:column style="font-size: 1.3em;padding: 5px;">
+			<h:outputText value="#{item.department.name}" />
+		</p:column>
+	</p:headerRow>
+	<p:column headerText="..." style="text-align:center" width="30">
+		<p:selectBooleanCheckbox value="#{item.select}">
+			<p:ajax process="@this" />
+		</p:selectBooleanCheckbox>
+	</p:column>
+	<p:column headerText="Mã" style="text-align:center" width="50">
+		<h:outputText value="#{item.code}" />
+	</p:column>
+	<p:column headerText="Tên phòng ban" style="text-align:left">
+		<h:outputText value="#{item.name}" />
+	</p:column>
+	<f:facet name="footer">
+		<p:commandButton
+			style="color: #fff;background-color: #007bff;border-color:#007bff"
+			process="@form" value="Thêm vào danh sách"
+			update="loadResult:dtEmployees"
+			action="#{settingUserBean.getDepartmentList()}" />
+		<div style="clear: both;" />
+	</f:facet>
+</p:dataTable>
+
+<!-- Tao cau hoi view -->
+<p:panel id="updatepn" style="border:none;width: 200%">
+	<c:if test="#{createQuestionBean.questionTypeTempTest == 2}">
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputAnswer1" placeholder="Nhập đáp án 1"
+				value="#{createQuestionBean.answersNew[0]}" />
+		</div>
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputAnswer2" placeholder="Nhập đáp án 2"
+				value="#{createQuestionBean.answersNew[1]}" />
+		</div>
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputAnswer3" placeholder="Nhập đáp án 3"
+				value="#{createQuestionBean.answersNew[2]}" />
+		</div>
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputAnswer4" placeholder="Nhập đáp án 4"
+				value="#{createQuestionBean.answersNew[3]}" />
+		</div>
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputAnswer5" placeholder="Nhập đáp án 5"
+				value="#{createQuestionBean.answersNew[4]}" />
+		</div>
+	</c:if>
+	<c:if test="#{createQuestionBean.questionTypeTempTest == 4}">
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputRating1" placeholder="Nhập giá trị MIN"
+				value="#{createQuestionBean.answersNew[0]}" />
+		</div>
+		<div class="row"
+			style="width: 100%; margin: 0 auto; margin-bottom: 10px">
+			<p:inputText style="width: 100%!important;margin-bottom: 10px"
+				id="inputRating2" placeholder="Nhập giá trị MAX"
+				value="#{createQuestionBean.answersNew[1]}" />
+		</div>
+
+	</c:if>
+</p:panel>
+<!-- end tao cau hoi -->
+
+<p:commandButton value="Đăng xuất"
+	actionListener="#{loginBean.logout()}"
+	style="margin-right: 10px;margin-left: 15px;margin-top: 11px;border:1px solid #4285d9;background-color: #4285d9;" />
+	
+	
+<!--KET QUA  -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>LIXCO</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- Bootstrap core CSS -->
+	<h:outputStylesheet library="bootstrap"
+		name="web/css/bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap" name="web/css/css-search.css" />
+
+</h:head>
+<h:body>
+	<ui:composition template="common.xhtml">
+		<ui:define name="content">
+			<h:form id="loadResult">
+				<!-- Them bo cau hoi -->
+				<div class="row"
+					style="width: 90%; box-shadow: 0px 0px 5px #000;; margin: 0 auto; border-radius: 5px; margin-top: 5px; margin-bottom: 15px;">
+					<div class="row" style="margin-bottom: 35px; margin: 0 auto">
+						<p:fieldset legend="KẾT QUẢ KỲ KHẢO SÁT:"
+							style="width:100%;margin-bottom:20px;color: black;margin-left:27%">
+							<h:outputText style="font-size:16px;font-weight:bold"
+								value="#{viewResultSurveyBean.surveyPlaying.name}" />
+						</p:fieldset>
+					</div>
+					<div style="width: 50%; margin-left: 88%; margin-bottom: 5px">
+						<p:linkButton icon="fa fa-arrow-left" outcome="index"
+							value="Quay lại"
+							style="background-color: #46af79;border-color:#46af79; margin-right: 10px">
+						</p:linkButton>
+					</div>
+					<div class="row"
+						style="width: 90%; margin-left: 0px; margin: 0 auto">
+						<div style="width: 50%; margin-right: 15px">
+							<p:dataTable id="dtDepartment" var="department"
+								value="#{viewResultSurveyBean.departmentsByLocate1}"
+								selectionMode="single"
+								selection="#{viewResultSurveyBean.departmentSelected}"
+								paginator="true" rows="20" rowKey="#{department.id}"
+								expandableRowGroups="true" sortBy="#{department.locateName}"
+								paginatorPosition="bottom">
+								<p:ajax event="rowSelect"
+									listener="#{viewResultSurveyBean.departmentSelect}"
+									update="loadResult:dtEmployee" />
+								<p:headerRow>
+									<p:column colspan="3">
+										<h:outputText value="#{department.locateName}" />
+									</p:column>
+								</p:headerRow>
+								<p:column headerText="Mã"
+									style="width: 100px; text-align: center">
+									<h:outputText value="#{department.departmentCode}" />
+								</p:column>
+								<p:column style="width:100%;text-align: left"
+									headerText="Tên phòng ban">
+									<h:outputText value="#{department.departmentName}" />
+								</p:column>
+							</p:dataTable>
+						</div>
+						<div style="width: 48%;">
+							<p:dataTable id="dtEmployee" var="employee"
+								value="#{viewResultSurveyBean.employeesByDepartment}"
+								widgetVar="employee1" emptyMessage="Không tìm thấy"
+								filteredValue="#{viewResultSurveyBean.resultsAfterFilter}"
+								paginator="true" rows="20" paginatorPosition="bottom"
+								rowIndexVar="rowIndex" rowsPerPageTemplate="20,50,100">
+								<p:column headerText="STT" style="text-align: center;width:80px">
+									<h:outputText value="#{rowIndex+1}" />
+								</p:column>
+								<p:column headerText="Tên nhân viên" filterBy="#{employee.name}"
+									filterMatchMode="contains">
+									<h:outputText value="#{employee.name}" />
+								</p:column>
+								<p:column headerText="Chi tiết" style="width:80px" priority="3">
+									<center>
+										<p:linkButton icon="fa fa-search-plus"
+											outcome="ChiTietKhaoSat">
+											<f:param name="setofid"
+												value="#{viewResultSurveyBean.surveyId}" />
+											<f:param name="employeeCode" value="#{employee.code}" />
+										</p:linkButton>
+									</center>
+								</p:column>
+
+							</p:dataTable>
+						</div>
+						<!-- TEST -->
+						<!-- END TEST -->
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

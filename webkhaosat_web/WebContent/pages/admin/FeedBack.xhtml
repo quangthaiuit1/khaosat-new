@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<title>LIXCO</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- Bootstrap core CSS -->
+	<h:outputStylesheet library="bootstrap"
+		name="web/css/bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap" name="web/css/css-search.css" />
+
+</h:head>
+<h:body>
+	<ui:composition template="common.xhtml">
+		<ui:define name="content">
+			<h:form id="feedBack">
+
+				<div class="row"
+					style="width: 90%; box-shadow: 0px 0px 5px #888;; margin: 0 auto; margin-bottom: 15px; border-radius: 5px">
+					<div class="row"
+						style="width: 99%; margin-left: 0px; margin: 0 auto">
+						<div class="col-sm-12 col-md-12 col-lg-12">
+							<h6 style="color: black; text-align: center; font-weight: bold">TOÀN
+								BỘ Ý KIẾN</h6>
+						</div>
+						<div style="width: 50%; margin-left: 91%; margin-bottom: 5px">
+							<p:linkButton icon="fa fa-arrow-left" outcome="ThongKe"
+								value="Quay lại"
+								style="background-color: #46af79;border-color:#46af79; margin-right: 10px">
+								<c:if test="${feedBackBean.surveyId != 0}">
+									<f:param name="setofid" value="#{feedBackBean.surveyId}" />
+								</c:if>
+							</p:linkButton>
+						</div>
+						<p:dataTable var="ur" value="#{feedBackBean.feedbacks}"
+							widgetVar="feedback1" emptyMessage="Không tìm thấy"
+							filteredValue="#{feedBackBean.feedbacksAfterFilter}"
+							paginator="true" rows="10" paginatorPosition="bottom"
+							rowIndexVar="rowIndex" rowsPerPageTemplate="20,50,100">
+							<f:facet name="header">
+								<p:outputPanel style="margin-right: 5px">
+									<h:outputText value="Tìm kiếm:" />
+									<i class="pi pi-search"></i>
+									<p:inputText id="globalFilter"
+										onkeyup="PF('feedback1').filter()"
+										style="width:30%;background-color: white;color: black"
+										placeholder="Nhập từ khóa" />
+								</p:outputPanel>
+							</f:facet>
+							<p:column headerText="STT" style="width: 5%;text-align: center">
+								<h:outputText value="#{rowIndex+1}" />
+							</p:column>
+							<p:column headerText="Câu hỏi" style="width:20%">
+								<h:outputText value="#{ur.userResult.question.name}" />
+							</p:column>
+							<p:column headerText="Đáp án" style="width:65%">
+								<h:outputText value="#{ur.userResult.result}" />
+							</p:column>
+							<p:column filterBy="#{ur.employeeName}"
+								headerText="Tên nhân viên" filterMatchMode="contains"
+								style="width: 15%;">
+								<h:outputText value="#{ur.employeeName}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

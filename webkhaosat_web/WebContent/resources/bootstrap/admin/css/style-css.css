@@ -1,0 +1,189 @@
+/* WEB KHAO SAT */
+
+.ui-icon {
+	background-image: none!important;
+}
+
+.ui-widget-content .ui-state-default{
+    border: 1px solid #909192;
+    color: black!important;
+}
+
+.ui-fieldset-legend{
+    font-size:13px!important;
+}
+
+legend {
+	width:auto!important;
+}
+.noneformatfs {
+	padding: 5px !important;
+	text-align: center;
+}
+
+.noneformatfs legend {
+	text-align: left;
+}
+
+.noneformatfs input, textarea {
+	width: 95% !important;
+}
+
+.noneformatfs .ui-fieldset-legend {
+	padding: 0.2em 0.2em !important;
+	border: 0px;
+	background: none;
+	font-weight: bold;
+}
+
+tr {
+	background-color: #686a6c;
+}
+
+.ui-menubar {
+	width: auto;
+	margin-top: 18px;
+	margin-left: 15px;
+}
+
+.ui-datatable .ui-column-filter {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	margin: auto;
+	background-color: white;
+}
+
+.ui-widget-content {
+	border: 1px solid #909192;
+	color: #222222;
+}
+
+.ui-widget-content .ui-inputfield {
+	color: #222222 !important;
+}
+
+.ui-widget-header {
+	border: 1px solid #909192;
+	background: none;
+	background-color: #909192;
+	color: #eaf5f7;
+	font-weight: bold;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default {
+	border: 1px solid #909192;
+	background: none;
+	font-weight: normal;
+	color: #ffffff;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	border: none;
+	background: none;
+	color: white;
+	background-color: #17a2b8;
+}
+
+.ui-datatable tr {
+	background-color: none;
+}
+
+.ui-datatable th, .ui-datatable td, .ui-datatable tr {
+	border-color: #cbcbcb;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-trash-o {
+	color: #ffffff;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-trash {
+	color: red;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-line-chart {
+	color: #a45757;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-list-alt {
+	color: #876a6a;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-arrow-left {
+	color: #ffffff;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-list-ul {
+	color: #377cb0;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-user {
+	color: #377cb0;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-comments {
+	color: #377cb0;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-navicon {
+	color: #353535;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa-search-plus {
+	color: #2b5fa2;
+}
+
+span.ui-button-icon-left.ui-icon.ui-c.fa.fa-edit {
+	color: #268537;
+}
+
+button.ui-autocomplete-dropdown.ui-button.ui-widget.ui-state-default.ui-corner-right.ui-button-icon-only
+	{
+	background-color: #007bff;
+}
+
+.ui-datatable table {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	background: none !important;
+	background-color: black;
+}
+
+.value {
+	font-weight: bold;
+}
+
+.ui-datatable {
+	margin-bottom: 25px
+}
+
+.ui-datatable .ui-datatable-footer {
+	text-align: left;
+}
+
+.ui-datalist ul {
+	padding: 0 0 0 10px;
+	margin: 5px 0;
+}
+
+.ui-datatable .ui-button-icon-only .ui-button-text {
+	padding: 0;
+	line-height: 1.2;
+}
+
+.ui-widget {
+	font-size: 13px;
+}
+
+Chinh cac row padding 0 .ui-datatable thead th, .ui-datatable tbody td,
+	.ui-datatable tfoot td, .ui-datatable tfoot th {
+	padding: 4px 4px;
+}
+
+.ui-inputfield {
+	color: #ba3030;
+}
+/* END WEB KHAO SAT */

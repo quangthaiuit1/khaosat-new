@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:body id="page-top">
+	<ui:composition template="common.xhtml">
+		<ui:define name="content">
+			<h:form id="headerCustom">
+				<div class="row"
+					style="width: 90%; box-shadow: 0px 0px 5px #000;; margin: 0 auto; border-radius: 5px; margin-top: 20px; margin-bottom: 15px;">
+					<div class="row" style="width: 100%; font-weight: bold">
+						<span class="group-name"
+							style="margin: 0 auto; color: black; margin-top: 20px">DANH
+							SÁCH TOÀN BỘ KỲ KHẢO SÁT</span> <span class="group-description"><p
+								style="text-align: center; margin-left: 5px"></p></span> <br />
+					</div>
+					<div class="row"
+						style="width: 98%; margin-left: 0px; margin: 0 auto">
+
+						<p:dataTable id="listSetofquestions" var="set1"
+							widgetVar="wgDTSurvey" emptyMessage="Không có dữ liệu"
+							value="#{questionUserBean.managerSurveyUser}"
+							rowIndexVar="rowIndex" paginator="true" rows="10"
+							sortBy="#{set1.survey.endDate}">
+							<f:facet name="header">
+								<p:outputPanel style="margin-right: 5px">
+									<h:outputText value="Tìm kiếm:" />
+									<i class="pi pi-search"></i>
+									<p:inputText id="globalFilter"
+										onkeyup="PF('wgDTSurvey').filter()"
+										style="width:30%;background-color: white;color: black"
+										placeholder="Nhập từ khóa" />
+								</p:outputPanel>
+							</f:facet>
+							<p:column headerText="STT" style="text-align: center;width: 5%">
+								<h:outputText value="#{rowIndex+1}" />
+							</p:column>
+							<p:column headerText="Tên kỳ khảo sát"
+								filterBy="#{set1.survey.name}" filterMatchMode="contains">
+								<h:outputText value="#{set1.survey.name}" />
+							</p:column>
+							<p:column headerText="Ngày bắt đầu" style="width: 15%">
+								<center>
+									<h:outputText value="#{set1.survey.startDate}">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:outputText>
+								</center>
+							</p:column>
+							<p:column headerText="Ngày kết thúc" style="width: 15%">
+								<center>
+									<h:outputText value="#{set1.survey.endDate}">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:outputText>
+								</center>
+							</p:column>
+							<p:column headerText="Chưa khảo sát"
+								style="text-align: center;width: 10%" priority="3">
+								<h:outputText value="Chưa hoàn thành"
+									style="font-style: italic;color:#3daa97;font-size:12px"
+									rendered="#{set1.inCompleted}" />
+							</p:column>
+							<p:column headerText="Đã hoàn thành"
+								style="text-align: center;width: 10%" priority="3">
+								<h:outputText value="Đã hoàn thành"
+									style="font-style: italic;color:#61cf12;font-size:12px"
+									rendered="#{set1.completed}" />
+							</p:column>
+							<p:column headerText="Đã hết hạn"
+								style="text-align: center;width: 10%" priority="3">
+								<h:outputText value="Đã hết hạn"
+									style="font-style: italic;color:red;font-size:12px"
+									rendered="#{set1.expired}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
